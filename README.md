@@ -4,6 +4,8 @@ Motivačná hra pre druhákov na mobil. Do dielne prichádzajú pokazené autá 
 Každá správne vyriešená úloha opraví jednu vec na vozidle a prinesie skrutky 🔩,
 za ktoré si dieťa vozidlá vylepšuje (farby, pruhy, svetlá, klaksón, vagóny…).
 
+**Hrať:** https://martinmachava-gif.github.io/pocitarska-dielna/
+
 Je to statická stránka v čistom HTML, CSS a JavaScripte, bez knižníc a bez servera.
 Postup sa ukladá v telefóne (localStorage).
 
