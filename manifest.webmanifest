@@ -1,0 +1,17 @@
+{
+  "name": "Počtárska dielňa",
+  "short_name": "Dielňa",
+  "description": "Počty do 20 a geometria pre druhákov. Za správne príklady opravuješ autá a vlaky.",
+  "lang": "sk",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#e2b57a",
+  "theme_color": "#e2b57a",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

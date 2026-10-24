@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Galéria úloh a vozidiel</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@600;700;800&display=swap">
+<link rel="stylesheet" href="../style.css">
+<style>
+  /* Vývojárska stránka: všetky typy úloh a vozidlá na jednom mieste na kontrolu očami */
+  body { height: auto; }
+  .gal { padding: 16px; display: grid; gap: 16px; max-width: 640px; margin: 0 auto; }
+  .gal .task-card { flex: none; }
+  .gal h2 { margin: 18px 0 0; font-family: var(--font-display); }
+  .gal .veh-row { background: var(--card); border: 3px solid var(--ink); border-radius: 16px; padding: 10px; overflow-x: auto; }
+  .gal .veh-row svg { height: 120px; width: auto; display: block; max-width: none; }
+</style>
+</head>
+<body>
+<div class="gal" id="gal"></div>
+<div id="fx"></div>
+<script src="../js/util.js"></script>
+<script src="../js/sound.js"></script>
+<script src="../js/geo.js"></script>
+<script src="../js/art.js"></script>
+<script src="../js/tasks.js"></script>
+<script>
+  // ?typ=shapes&l=2 zobrazí len jeden typ; ?vozidla=1 zobrazí vozidlá
+  const q = new URLSearchParams(location.search);
+  const gal = document.getElementById('gal');
+  const S = { skill: {}, settings: { types: {} } };
+  let html = '';
+  if (q.get('vozidla')) {
+    for (const id of Art.ORDER) {
+      const d = Art.DEFS[id];
+      html += `<h2>${d.name}</h2>`;
+      html += `<div class="veh-row">${Art.svg(id, { broken: Art.makeDamage(id, 12) })}</div>`;
+      const on = {};
+      d.ups.forEach(u => { on[u] = true; });
+      html += `<div class="veh-row">${Art.svg(id, { on, wagons: d.wagonMax || 0, steam: true, name: 'Jakub' })}</div>`;
+    }
+  } else {
+    const types = q.get('typ') ? [q.get('typ')] : TYPES.map(t => t.id);
+    const levels = q.get('l') ? [Number(q.get('l'))] : [1, 2, 3];
+    for (const type of types) for (const l of levels) {
+      S.skill[type] = { lvl: l, streak: 0, hist: [] };
+      const t = Tasks.make(S, type);
+      const ans = t.input === 'choice'
+        ? `<div class="choices n${t.choices.length} ${t.layout || 'pics'}">${t.choices.map(c => `<button class="opt${c.value === t.answer ? ' right' : ''}">${c.html}</button>`).join('')}</div>`
+        : `<p>Odpoveď: <b>${t.answerLabel || t.answer}</b></p>`;
+      html += `<h2>${type} · úroveň ${l}</h2><div class="card task-card"><p class="t-prompt">${t.title}</p>${t.body ? `<div class="t-body">${t.body}</div>` : ''}</div>${ans}`;
+      html += `<div class="card task-card"><div class="explain">${t.explain}</div></div>`;
+    }
+  }
+  gal.innerHTML = html;
+</script>
+</body>
+</html>
