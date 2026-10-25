@@ -635,14 +635,15 @@
   VIEWS.gate = () => {
     const a = U.rnd(6, 9), b = U.rnd(6, 9);
     gate = { ans: a * b, input: '' };
-    return `
+    return `<div class="repair">
       <header class="bar gut"><button class="icon-btn" data-act="home" aria-label="Späť do dielne">✕</button><div class="brand small">Pre rodičov</div><span></span></header>
       <div class="task gut">
         <div class="card task-card"><p class="t-prompt">Sem môžu len dospelí. Koľko je ${a} × ${b}?</p>
           <div class="t-body"><div class="expr"><span class="n">${a}</span><span class="op">×</span><span class="n">${b}</span><span class="op">=</span><span class="slot" id="gslot">?</span></div></div>
           <p class="t-msg bad" id="gmsg"></p></div>
         <div class="answer">${keypad('gkey')}</div>
-      </div>`;
+      </div>
+    </div>`;
   };
   ACT.gate = () => show('gate');
   ACT.gkey = ({ k }) => {

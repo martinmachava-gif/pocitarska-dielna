@@ -234,11 +234,11 @@ const Geo = (() => {
     const others = ['circle', 'square', 'triangle', 'rectangle'].filter(k => k !== target);
     const items = cells.map((cell, i) => {
       const kind = i < nT ? target : U.pick(others);
-      const cx = 44 + (cell % 4) * 84 + U.rnd(-7, 7), cy = 38 + Math.floor(cell / 4) * 72 + U.rnd(-5, 5);
-      const size = U.rnd(40, 50), fill = U.pick(PAL), deg = U.rnd(-25, 25), variant = U.rnd(0, 2);
+      const cx = 44 + (cell % 4) * 84 + U.rnd(-7, 7), cy = 34 + Math.floor(cell / 4) * 64 + U.rnd(-4, 4);
+      const size = U.rnd(40, 48), fill = U.pick(PAL), deg = U.rnd(-25, 25), variant = U.rnd(0, 2);
       return { kind, cx, cy, draw: hl => shape(kind, cx, cy, size, fill, deg, variant, hl) };
     });
-    return pic(items, 344, 222);
+    return pic(items, 344, 200);
   }
 
   function trainPic() {

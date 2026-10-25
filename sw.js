@@ -1,5 +1,5 @@
 /* Offline režim: súbory hry sa uložia do telefónu. Pri zmene hry zvýš VERZIA. */
-const VERZIA = 'dielna-1';
+const VERZIA = 'dielna-2';
 const SUBORY = [
   './', 'index.html', 'style.css', 'manifest.webmanifest',
   'js/util.js', 'js/sound.js', 'js/geo.js', 'js/art.js', 'js/tasks.js', 'js/store.js', 'js/app.js',
